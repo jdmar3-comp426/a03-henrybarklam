@@ -1,3 +1,4 @@
+import { sumToString } from "../mild/mild_1.js";
 import {variance} from "./data/stats_helpers.js";
 
 /**
@@ -63,6 +64,30 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
+    let len = array.length;
+    let sumi = getSum(array);
+    let meani = sumi/len;
+    let mediani = getMedian(array);
+    let mini = Math.min(...array);
+    let maxi = Math.max(...array);
+    let vari = 0;
 
+    for (let i = 0; i< len; i++){
+        vari = vari + Math.pow(array[i]-meani,2);
+    }
+    vari = vari/len;
+    let stand = Math.sqrt(vari);
+    let stats = {
+        'length': len,
+        'sum':sumi,
+        'mean':meani,
+        'median':mediani,
+        'min':mini,
+        'max':maxi,
+        'variance':vari,
+        'standard_deviation':stand,
+    };
+
+    return stats
 }
 
