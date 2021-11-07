@@ -42,8 +42,6 @@ export function getMedian(array) {
     return val
 }
 
-console.log(getMedian([14,8,5,7,7,5,2,7,5,3,47,9]))
-
 /**
  * Calculates statistics (see below) on an array of numbers.
  * Look at the stats_helper.js file. It does variance which is used to calculate std deviation.
