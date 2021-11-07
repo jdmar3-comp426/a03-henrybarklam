@@ -15,7 +15,6 @@ export function sumToString(a, b) {
     let e = d.toString()
     return e
 }
-console.log(sumToString(3,4))
 
 
 /**
