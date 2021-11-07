@@ -27,8 +27,21 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-
+    let ls = array.sort()
+    let len = array.length
+    let ind;
+    let val;
+    if(len % 2 !== 1){
+        val = (array[len/2] + array[(len/2)-1])/2;
+    }
+    else{
+        ind = Math.floor(len/2);
+        return ls[ind];
+    }
+    return val
 }
+
+
 
 /**
  * Calculates statistics (see below) on an array of numbers.
