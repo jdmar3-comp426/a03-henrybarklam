@@ -11,9 +11,11 @@
 export function sumToString(a, b) {
     let c = a + b
     let answer = a + ' + ' + b + ' = ' + c
-    return `${a} + ${b} = ${c} `
+    let d = `${a} + ${b} = ${c} `
+    let e = d.toString()
+    return e
 }
-
+console.log(sumToString(3,4))
 
 
 /**
@@ -42,7 +44,6 @@ export function maxAndMin(numbers) {
 
     return nums
 }
-console.log(maxAndMin([1,2,4,5,6]))
 
 /**
  *
