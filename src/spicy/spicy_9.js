@@ -154,9 +154,23 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-
+    let f_list = {
+        pass: [],
+        fail: []
+    }
+    let n = arr.length
+    for(let i =0; i<n; i++){
+        // if(i%2 ==1){
+            if(test(arr[i])){
+                f_list["pass"].push(arr[i]);
+            }
+            else{
+                f_list["fail"].push(arr[i]);
+            }
+        // }
+    }
+    return f_list;
 };
-
 
 /**
  * Write and export a function named "allEvensAreOdd" which takes as input an
