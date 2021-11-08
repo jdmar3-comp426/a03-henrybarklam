@@ -122,9 +122,15 @@ export const everyEven = (arr, test) => {
  *    someEven([0, 0, 0, 0, 0], x => x === 0)  <--  returns true
  */
 export const someEven = (arr, test) => {
-
+    let n = arr.length
+    for(let i =0; i<n; i++){
+        if(i%2 ==0 ){
+            if(test(arr[i])){
+                return true
+            }
+    }}
+    return false
 };
-
 
 /**
  * Write and export a function named "filter" which takes an array and a test
