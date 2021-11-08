@@ -17,20 +17,18 @@
 export const repeat = (fn, n, ...params) => {
     let ls =[]
     for(let i = 0; i<n; i++){
-        fn(params)
+        fn(params[0])
     }
     return;
 };
-console.log(repeat(console.log,5, 'Whats up'))
-
-
 /**
  * Use the repeat function to log the string "Hello, world!" to the console
  *   10 times.
  */
 export const repeatDemo = () => {
-    repeat(console.log, 10);
+    repeat(console.log, 10, 'Hello, world!');
 };
+
 
 /**************************************************************************
  *
