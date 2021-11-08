@@ -30,12 +30,20 @@ let sum_c = 0;
 let sum_h = 0;
 let years_list = [];
 let sum_hybrid = 0;
+let make_list = {}
+
 for(let i =0; i<n; i++){
     sum_c = sum_c + mpg_data[i]['city_mpg'];
     sum_h = sum_h + mpg_data[i]['highway_mpg'];
     years_list.push(mpg_data[i]['year'])
     if(mpg_data[i]['hybrid']){
         sum_hybrid++
+    }
+    if(mpg_data[i]["hybrid"]){
+        if(!(mpg_data[i]["make"] in make_list)){
+            make_list[mpg_data[i]["make"]] = [];
+        }
+        make_list[mpg_data[i]["make"]].push(mpg_data[i]["id"]);
     }
 }
 let avg_c = sum_c/n;
@@ -110,3 +118,48 @@ export const moreStats = {
     makerHybrids: undefined,
     avgMpgByYearAndHybrid: undefined
 };
+let master_list = [];
+for (const [key,value] of Object.entries(make_list)){
+    let new_ls = {};
+    new_ls["make"] = key;
+    new_ls["hybrids"] = value;
+    master_list.push(new_ls);
+}
+master_list.sort(function(a,b){
+    return b['hybrids'].length - a['hybrids'].length ;
+});
+moreStats.makerHybrids = master_list;
+
+let second_master = {};
+for(let i=0; i<n; i++){
+    if(!(mpg_data[i]["year"] in second_master)){
+        second_master[mpg_data[i]["year"]] = {
+            "hybrid": {
+                "city": [],
+                "highway": []
+            },
+            "notHybrid":{
+                "city": [],
+                "highway": []
+            }
+        };
+    }
+    if(mpg_data[i]["hybrid"]){
+        second_master[mpg_data[i]["year"]]["hybrid"]["city"].push(mpg_data[i]["city_mpg"]);
+        second_master[mpg_data[i]["year"]]["hybrid"]["highway"].push(mpg_data[i]["highway_mpg"]);
+    }
+    else{
+        second_master[mpg_data[i]["year"]]["notHybrid"]["city"].push(mpg_data[i]["city_mpg"]);
+        second_master[mpg_data[i]["year"]]["notHybrid"]["highway"].push(mpg_data[i]["highway_mpg"]);
+    }
+
+}
+const avg_finder = (array) => array.reduce((a,b) => a + b) / array.length;
+for (const [key,values] of Object.entries(second_master)){
+    second_master[key]["hybrid"]['city'] = avg_finder(second_master[key]['hybrid']['city']);
+    second_master[key]['hybrid']['highway'] = avg_finder(second_master[key]['hybrid']['highway']);
+    second_master[key]['notHybrid']['city'] = avg_finder(second_master[key]['notHybrid']['city']);
+    second_master[key]['notHybrid']['highway'] = avg_finder(second_master[key]['notHybrid']['highway']);
+}
+
+ 
