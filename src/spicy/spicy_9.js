@@ -178,7 +178,8 @@ export const filter = (arr, test) => {
  *   odd numbers. Use the "everyEven" function in this function.
  */
 export const allEvensAreOdd = (arr) => {
-
+    const odd = (x) => x % 2 === 1;
+    return everyEven(arr,odd)
 };
 
 
@@ -188,9 +189,10 @@ export const allEvensAreOdd = (arr) => {
  *   array is an odd number. Use the "someEven" function in this function.
  */
 export const anEvenIsOdd = (arr) => {
-
+    const odd = (x) => x % 2 === 1;
+    return someEven(arr,odd)
 };
-
+console.log(anEvenIsOdd([4, 5, 6, 7, 8, 9, 7]))
 
 /**
  * Write and export a function named "hasExactly" which takes an array, a test
