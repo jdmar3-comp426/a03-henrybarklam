@@ -65,7 +65,6 @@ export const tenTimes = (num1) => {
 export const tenTimesFifty = () => {
     return tenTimes(50)
 };
-console.log(tenTimesFifty());
 
 
 
