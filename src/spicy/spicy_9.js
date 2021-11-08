@@ -192,7 +192,6 @@ export const anEvenIsOdd = (arr) => {
     const odd = (x) => x % 2 === 1;
     return someEven(arr,odd)
 };
-console.log(anEvenIsOdd([4, 5, 6, 7, 8, 9, 7]))
 
 /**
  * Write and export a function named "hasExactly" which takes an array, a test
@@ -201,5 +200,5 @@ console.log(anEvenIsOdd([4, 5, 6, 7, 8, 9, 7]))
  *   pass the test. You must use the filter function.
  */
 export const hasExactly = (arr, test, n) => {
-
+    return filter(arr,test)['pass'].length == n;    
 };
