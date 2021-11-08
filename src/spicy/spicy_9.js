@@ -92,9 +92,15 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
-
+    let n = arr.length
+    for(let i =0; i<n; i++){
+        if(i%2 ==0 ){
+            if(!(test(arr[i]))){
+                return false
+            }
+    }}
+    return true
 };
-
 
 /**
  * Write and export a function named "someEven" which takes an array and a test
