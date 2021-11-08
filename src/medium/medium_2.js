@@ -162,4 +162,4 @@ for (const [key,values] of Object.entries(second_master)){
     second_master[key]['notHybrid']['highway'] = avg_finder(second_master[key]['notHybrid']['highway']);
 }
 
- 
+moreStats.avgMpgByYearAndHybrid = second_master;
