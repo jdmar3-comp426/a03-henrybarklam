@@ -25,6 +25,29 @@ export const allCarStats = {
     ratioHybrids: undefined,
 };
 
+let n = mpg_data.length;
+let sum_c = 0;
+let sum_h = 0;
+let years_list = [];
+let sum_hybrid = 0;
+for(let i =0; i<n; i++){
+    sum_c = sum_c + mpg_data[i]['city_mpg'];
+    sum_h = sum_h + mpg_data[i]['highway_mpg'];
+    years_list.push(mpg_data[i]['year'])
+    if(mpg_data[i]['hybrid']){
+        sum_hybrid++
+    }
+}
+let avg_c = sum_c/n;
+let avg_h = sum_h/n;
+let ratio_Hybrids = sum_hybrid/n;
+let fuel_map = {
+    'city': avg_c,
+    'highway': avg_h
+}
+allCarStats.avgMpg = fuel_map;
+allCarStats.allYearStats = getStatistics(years_list);
+allCarStats.ratioHybrids = ratio_Hybrids;
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
