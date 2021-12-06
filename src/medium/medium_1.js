@@ -1,3 +1,4 @@
+import { sumToString } from "../mild/mild_1.js";
 import {variance} from "./data/stats_helpers.js";
 
 /**
@@ -8,7 +9,12 @@ import {variance} from "./data/stats_helpers.js";
  * prototype functions. Very useful
  */
 export function getSum(array) {
-
+    let x = array.length
+    let y = 0
+    for(let i = 0; i<x; i++){
+        y = y + array[i]
+    }
+    return y
 }
 
 
@@ -22,7 +28,18 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-
+    array.sort((a,b) => a-b);
+    let len = array.length
+    let ind;
+    let val;
+    if(len % 2 !== 1){
+        val = (array[len/2] + array[(len/2)-1])/2;
+    }
+    else{
+        ind = Math.floor(len/2);
+        return array[ind];
+    }
+    return val
 }
 
 /**
@@ -45,6 +62,30 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
+    let len = array.length;
+    let sumi = getSum(array);
+    let meani = sumi/len;
+    let mediani = getMedian(array);
+    let mini = Math.min(...array);
+    let maxi = Math.max(...array);
+    let vari = 0;
 
+    for (let i = 0; i< len; i++){
+        vari = vari + Math.pow(array[i]-meani,2);
+    }
+    vari = vari/len;
+    let stand = Math.sqrt(vari);
+    let stats = {
+        'length': len,
+        'sum':sumi,
+        'mean':meani,
+        'median':mediani,
+        'min':mini,
+        'max':maxi,
+        'variance':vari,
+        'standard_deviation':stand,
+    };
+
+    return stats
 }
 
